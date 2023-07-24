@@ -2,6 +2,13 @@
 
 IP Details Lookup is a simple Node.js website that provides details about an IP address, including geographic information, ISP, and IP types (IPv6 and IPv4). This repository contains the server-side code for the website.
 
+## Description
+
+Our website offers a user-friendly interface to look up detailed information about any IP address. It also provides an API that allows developers to programmatically retrieve IP address details for their applications.
+
+- Website: [https://ipflix.vercel.app/](https://ipflix.vercel.app/)
+- GitHub Repository: [https://github.com/SH20RAJ/Ipflix](https://github.com/SH20RAJ/Ipflix)
+
 ## Getting Started
 
 To run the IP Details Lookup website locally, you need to have Node.js and npm installed on your machine.
@@ -9,8 +16,8 @@ To run the IP Details Lookup website locally, you need to have Node.js and npm i
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/ip-details-lookup.git
-cd ip-details-lookup
+git clone https://github.com/SH20RAJ/Ipflix.git
+cd Ipflix
 ```
 
 2. Install the dependencies:
@@ -60,6 +67,14 @@ The API response will be in JSON format and will include the following fields:
 ## Current User Details
 
 The "Current User Details" section on the website's homepage displays the user's current IP address and ISP details. These details are automatically fetched from the API when the page loads.
+
+## Deployment
+
+You can deploy the IP Details Lookup website using Vercel. Click on the button below to deploy it instantly:
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/SH20RAJ/Ipflix)
+
+Once deployed, you will get a public URL for your live website.
 
 ## Contribution
 
