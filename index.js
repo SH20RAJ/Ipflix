@@ -3,7 +3,7 @@ const ipinfo = require('ipinfo');
 
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // Middleware to serve static files (including the home page)
 app.use(express.static('public'));
@@ -46,7 +46,7 @@ app.get('/api/ipdetails', (req, res) => {
   res.json(ipDetails);
 });
 
-// Start the server
+
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on port ${port}`);
 });
