@@ -6,7 +6,7 @@ IP Details Lookup is a simple Node.js website that provides details about an IP 
 
 Our website offers a user-friendly interface to look up detailed information about any IP address. It also provides an API that allows developers to programmatically retrieve IP address details for their applications.
 
-- Website: [https://ipflix.vercel.app/](https://ipflix.vercel.app/)
+- Website: [https://ipflix.vercel.app/](https://ipflix.vercel.app/) || [https://ipflix.sh20raj.repl.co](https://ipflix.sh20raj.repl.co)
 - GitHub Repository: [https://github.com/SH20RAJ/Ipflix](https://github.com/SH20RAJ/Ipflix)
 
 ## Getting Started
