@@ -36,6 +36,9 @@ app.get('/api/ipdetails', (req, res) => {
     loc: req.ipDetails.loc || 'N/A',
     org: req.ipDetails.org || 'N/A',
     timezone: req.ipDetails.timezone || 'N/A',
+    isp: req.ipDetails.org || 'N/A',
+    ipv6: req.ipDetails.ipv6 || 'N/A',
+    ipv4: req.ipDetails.ipv4 || 'N/A',
     fromYourSide: 'This is an additional detail from our side!',
   };
 

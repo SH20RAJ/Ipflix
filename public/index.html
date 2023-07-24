@@ -3,30 +3,123 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IP Details API Documentation</title>
+  <title>IP Details Lookup</title>
+  <!-- Add Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
 </head>
 <body>
-  <h1>IP Details API Documentation</h1>
-  <p>
-    This API provides details about the IP address related to the incoming request.
-    <br>
-    Endpoint: <code>/api/ipdetails</code>
-    <br>
-    Method: GET
-  </p>
-  <h2>Response Format</h2>
-  <pre>
-    {
-      "timestamp": "2023-07-24T12:34:56.789Z",
-      "ip": "123.456.789.0",
-      "city": "Sample City",
-      "region": "Sample Region",
-      "country": "Sample Country",
-      "loc": "12.3456,78.9012",
-      "org": "Sample Organization",
-      "timezone": "UTC",
-      "fromYourSide": "This is an additional detail from our side!"
-    }
-  </pre>
+  <div class="container my-5">
+    <h1 class="text-center">IP Details Lookup</h1>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <form class="mb-3" id="ipForm">
+          <label for="ipAddress" class="form-label">Enter an IP address:</label>
+          <input type="text" class="form-control" id="ipAddress" name="ipAddress" placeholder="e.g., 152.58.186.103">
+          <button type="submit" class="btn btn-primary mt-3">Get Details</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="ipDetails" class="d-none">
+      <h2>IP Details:</h2>
+      <p>IPv6: <span id="ipv6">N/A</span></p>
+      <p>IPv4: <span id="ipv4">N/A</span></p>
+      <p>City: <span id="city">N/A</span></p>
+      <p>Region: <span id="region">N/A</span></p>
+      <p>Country: <span id="country">N/A</span></p>
+      <p>Latitude/Longitude: <span id="loc">N/A</span></p>
+      <p>ISP: <span id="isp">N/A</span></p>
+      <p>Timezone: <span id="timezone">N/A</span></p>
+      <p>Timestamp: <span id="timestamp">N/A</span></p>
+      <p>From Our Side: <span id="fromYourSide">N/A</span></p>
+    </div>
+
+    <div id="errorDetails" class="d-none">
+      <h2>Error:</h2>
+      <p id="errorMsg">Something went wrong. Please try again later.</p>
+    </div>
+
+    <div class="mt-5">
+      <h2>API Documentation</h2>
+      <p>
+        This API provides details about the IP address related to the incoming request.
+        <br>
+        Endpoint: <code>/api/ipdetails</code>
+        <br>
+        Method: GET
+      </p>
+      <h3>Example Usage</h3>
+      <p>
+        To get IP details for the current user, send a GET request to the following endpoint:
+        <br>
+        <code>GET /api/ipdetails</code>
+      </p>
+      <p>
+        To get IP details for a specific IP address, send a GET request to the following endpoint:
+        <br>
+        <code>GET /api/ipdetails?ip=&lt;IP_ADDRESS&gt;</code>
+        <br>
+        Replace <code>&lt;IP_ADDRESS&gt;</code> with the desired IP address (IPv4 or IPv6).
+      </p>
+    </div>
+
+    <div class="mt-5">
+      <h2>Current User Details</h2>
+      <p>Your current IP address: <span id="currentUserIP">N/A</span></p>
+      <p>Your ISP: <span id="currentUserISP">N/A</span></p>
+    </div>
+  </div>
+
+  <!-- Add Bootstrap JS and jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Event listener for form submission
+      $("#ipForm").submit(function(e) {
+        e.preventDefault();
+        const ipAddress = $("#ipAddress").val().trim();
+        if (ipAddress !== "") {
+          getIpDetails(ipAddress);
+        }
+      });
+
+      // Function to fetch IP details from the API
+      function getIpDetails(ipAddress) {
+        $.get(`/api/ipdetails?ip=${ipAddress}`)
+          .done(function(data) {
+            $("#ipv6").text(data.ipv6 || "N/A");
+            $("#ipv4").text(data.ipv4 || "N/A");
+            $("#city").text(data.city || "N/A");
+            $("#region").text(data.region || "N/A");
+            $("#country").text(data.country || "N/A");
+            $("#loc").text(data.loc || "N/A");
+            $("#isp").text(data.isp || "N/A");
+            $("#timezone").text(data.timezone || "N/A");
+            $("#timestamp").text(data.timestamp || "N/A");
+            $("#fromYourSide").text(data.fromYourSide || "N/A");
+            $("#errorDetails").addClass("d-none");
+            $("#ipDetails").removeClass("d-none");
+          })
+          .fail(function() {
+            $("#ipDetails").addClass("d-none");
+            $("#errorDetails").removeClass("d-none");
+          });
+      }
+
+      // Function to fetch current user details from the API
+      function getCurrentUserDetails() {
+        $.get(`/api/ipdetails`)
+          .done(function(data) {
+            $("#currentUserIP").text(data.ip || "N/A");
+            $("#currentUserISP").text(data.isp || "N/A");
+          });
+      }
+
+      // Fetch current user details on page load
+      getCurrentUserDetails();
+    });
+  </script>
 </body>
 </html>
