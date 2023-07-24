@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IP Details API Documentation</title>
+</head>
+<body>
+  <h1>IP Details API Documentation</h1>
+  <p>
+    This API provides details about the IP address related to the incoming request.
+    <br>
+    Endpoint: <code>/api/ipdetails</code>
+    <br>
+    Method: GET
+  </p>
+  <h2>Response Format</h2>
+  <pre>
+    {
+      "timestamp": "2023-07-24T12:34:56.789Z",
+      "ip": "123.456.789.0",
+      "city": "Sample City",
+      "region": "Sample Region",
+      "country": "Sample Country",
+      "loc": "12.3456,78.9012",
+      "org": "Sample Organization",
+      "timezone": "UTC",
+      "fromYourSide": "This is an additional detail from our side!"
+    }
+  </pre>
+</body>
+</html>
