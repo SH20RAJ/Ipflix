@@ -39,7 +39,7 @@ app.get('/api/ipdetails', (req, res) => {
     isp: req.ipDetails.org || 'N/A',
     ipv6: req.ipDetails.ipv6 || 'N/A',
     ipv4: req.ipDetails.ipv4 || 'N/A',
-    fromYourSide: 'This is an additional detail from our side!',
+    source: '',
   };
 
   res.json(ipDetails);
